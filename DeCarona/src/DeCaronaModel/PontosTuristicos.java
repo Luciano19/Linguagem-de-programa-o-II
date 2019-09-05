@@ -94,9 +94,9 @@ public class PontosTuristicos {
         PrintDados();
 
         if(hora >= abertura && hora <= fechamento){
-            System.out.println("O Estabelecimento estÃ¡ aberto !! ");
+            System.out.println("O Estabelecimento está aberto !! ");
         }else{
-            System.out.println("O Estabelecimento estÃ¡ fechado no momento ! Tente em outro lugar");
+            System.out.println("O Estabelecimento está fechado no momento ! Tente em outro lugar");
             return;
         }
         

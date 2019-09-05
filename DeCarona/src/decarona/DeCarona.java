@@ -22,7 +22,7 @@ public class DeCarona {
  *
  * @author Aluno
  */
- 
+//Declaração e criação das listas
     private static ArrayList <Transporte> listaTransporte = new ArrayList<>();
     private static ArrayList <Caronista> listaCaronista = new ArrayList<>();
     private static ArrayList <PontosTuristicos> listaPontos = new ArrayList<>();
@@ -54,67 +54,71 @@ public class DeCarona {
        String cpf, id1;
        boolean Igualdade = false;
        
-       
+//       Inicializção do menu principal
        do{
             System.out.println("\nBem Vindo");
             System.out.println("+-------------------------------+");
             System.out.println("|0 - SAIR                       |"
                     + "\n+-------------------------------+\n"
-                    + "|1 - ATUALIZAÇÃO        |"
+                    + "|1 - CONSULTA                |"
                     + "\n+-------------------------------+\n"
-                    + "|2 - LISTAGEM           |"
+                    + "|2 - LISTAGEM                   |"
                     + "\n+-------------------------------+\n"
-                    + "|3 - CADASTRO           |"
+                    + "|3 - CADASTRO                   |"
                     );
             System.out.println("+-------------------------------+");
             opcao = Console.readInt();
-       
+//       Submenu para consulta dos itens
        if(opcao == 1){
            System.out.println("1 - Consultar Caronista;");
+           System.out.println("+-------------------------------+");
            System.out.println("2 - Consultar Transporte;");
+           System.out.println("+-------------------------------+");
            System.out.println("3 - Consutar Ponto Turístico;");
+           System.out.println("+-------------------------------+");
            opcao = Console.readInt();
+//           Switch para verificação das informações a serem exibidas
            switch (opcao) {
                 case 1:
                     System.out.println("Digite o CPF que queira consultar: ");
                     cpf = Console.readString();
                         
-                   for(int i = 0; i < listaCaronista.size(); i++){
-                        Igualdade = listaCaronista.get(i).Testar(cpf);
+                   for(Caronista C: listaCaronista){ //For utilizado para percorrer a lista de caronista e verificar se já existe
+                        Igualdade = C.Testar(cpf);
                         if(Igualdade == true)
                             break;
                     }
                         
                     if(Igualdade == false){
-                        System.out.println("NÃ£o foi achado um caronista com esse CPF !!");
+                        System.out.println("Caronista não encontrado !!");
                     }
                     break;
                 case 2:
-                    System.out.println("Digite o ID do Transporte que queira consultar: ");
+                    System.out.println("Digite o ID do Transporte: ");
                     id1 = Console.readString();
                         
-                    for(int i = 0; i < listaTransporte.size(); i++){
-                        Igualdade = listaTransporte.get(i).Testar(id1);
+                    for(Transporte t: listaTransporte){ //For utilizado para percorrer a lista de transporte e verificar se já existe
+                        Igualdade = t.Testar(id1);
                         if(Igualdade == true)
                            break;
                     }
                         
                     if(Igualdade == false){
-                        System.out.println("NÃ£o foi achado um transporte com esse ID !!");
+                        System.out.println("Transporte não encontrado!!");
                      }
                     break;
                 case 3:
-                    System.out.println("Digite o ID do Ponto Turistico que queira consultar: ");
+                    System.out.println("Digite o ID do Ponto Turistico: ");
                     id1 = Console.readString();
                         
-                    for(int i = 0; i < listaPontos.size(); i++){
-                        Igualdade = listaPontos.get(i).Testar(id1);
+                    for(PontosTuristicos pt: listaPontos){ //For utilizado para percorrer a lista de pontos turisticos e verificar se já existe
+                        Igualdade = pt.Testar(id1);
                         if(Igualdade == true)
                             break;
                     }
                         
                     if(Igualdade == false){
-                        System.out.println("NÃ£o foi achado um Ponto Turistico com esse ID !!");
+                        System.out.println("Ponto Turistico não encontrado !!");
                     }
                     break;
                 default:
@@ -122,48 +126,53 @@ public class DeCarona {
             }
        }else if(opcao == 2){
             System.out.println("1 - Listagem de Pontos Turísticos de um Bairro");
+            System.out.println("+---------------------------------------------+");
             System.out.println("2 - Listagem de transportes Pontos Turísticos");
+            System.out.println("+---------------------------------------------+");
             opcao = Console.readInt();
             
             if(opcao == 1){
-                ListarPontos();
+                ListarPontos();//Método usado para exibir todos pontos turísticos
             }else if(opcao == 2){
                 
             }
        }else if(opcao == 3){
            System.out.println("1 - Registrar Caronista;");
+           System.out.println("+---------------------------------------------+");
            System.out.println("2 - Registrar Transporte;");
-           System.out.println("3 - Registrar Ponto TurÃ­stico");   
+           System.out.println("+---------------------------------------------+");
+           System.out.println("3 - Registrar Ponto Turístico"); 
+           System.out.println("+---------------------------------------------+");
            opcao = Console.readInt();
             if(opcao == 1){
-                CadastrarCaronista();
+                CadastrarCaronista();//Método usado para cadastrar caronista
             }else if(opcao == 2){
-                CadastrarTransporte();
+                CadastrarTransporte(); //Método usado para cadastrar transporte
             }else if(opcao == 3){
-                CadastrarPonto();
+                CadastrarPonto(); //Método usado para cadastrar pontos
             }
        }
        }while(opcao != 9);
         
     }
-
+//Metodo de cadastro e de de adição de caronista
     public static void CadastrarCaronista() throws IOException{
         String cpf, rg, nome;
         int idade;   
      
-        System.out.println("Digite o cpf: ");
+        System.out.println("Informe o cpf: ");
         cpf = Console.readString();
-        System.out.println("Digite o rg: ");
+        System.out.println("informe o rg: ");
         rg = Console.readString();
-        System.out.println("Digite o nome: ");
+        System.out.println("Informe o nome: ");
         nome = Console.readString();
-        System.out.println("Digite o idade: ");
+        System.out.println("Informe a idade: ");
         idade = Console.readInt();
        
         Caronista caronista =  new Caronista(cpf, rg, nome, idade);
-        for (int i = 0; i < listaCaronista.size(); i++) {
-            if(listaCaronista.get(i).VerSeJaTem(caronista) == 1){
-                System.out.println("Cadastro jÃ¡ Existe");
+        for (Caronista C: listaCaronista) {
+            if(C.VerSeJaTem(caronista) == 1){
+                System.out.println("Cadastro já Existênte");
                 return;
             }
         }       
@@ -177,16 +186,16 @@ public class DeCarona {
             ListarPontos(caronista);
         }
     }
-    
+    //Metodo de cadastro e de de adição de transporte
     private static void CadastrarTransporte() throws IOException{
         String placa, tipo, localSaida, localRetorno;
         int capacidade, saida, retorno, id;
         double valor;
-        Random r = new Random();
+        int novaMat = DeCarona.listaTransporte.size() + 1;// função para gerar Id
          
-        System.out.println("Digite a sua placa: ");
+        System.out.println("Insira a sua placa: ");
         placa = Console.readString();
-        System.out.println("Digite o tipo de transporte: ");
+        System.out.println("Informe o tipo de transporte: ");
         tipo = Console.readString();
         System.out.println("Digite o valor: ");
         valor = Console.readDouble();
@@ -199,12 +208,12 @@ public class DeCarona {
         retorno = Console.readInt();
         localRetorno = Console.readString(); 
         
-        id = r.nextInt(100);
+        id = novaMat;
         
         Transporte transporte =  new Transporte(id, placa, tipo, valor, capacidade, saida, localSaida, retorno, localRetorno);
-        for (int i = 0; i < listaTransporte.size(); i++) {
-            if(listaTransporte.get(i).VerSeJaTem(transporte) == 1){
-                System.out.println("Cadastro jÃ¡ Existe");
+        for (Transporte T: listaTransporte) {
+            if(T.VerSeJaTem(transporte) == 1){
+                System.out.println("Cadastro já Existênte");
                 return;
             }
         }
@@ -214,13 +223,13 @@ public class DeCarona {
         opcao = Console.readInt();
         
         if(opcao == 1){ 
-            for (int i = 0; i < listaPontos.size(); i++) {
-                listaPontos.get(i).PrintDados();
-                System.out.println("Deseja se registrar nesse ponto turÃ­stico");
+            for (PontosTuristicos pt:listaPontos) {
+                pt.PrintDados();
+                System.out.println("Deseja se registrar nesse ponto turístico");
                 opcao = Console.readInt();
                 
                 if(opcao == 1){
-                    listaPontos.get(i).CadastrarNoPonto(transporte);
+                    pt.CadastrarNoPonto(transporte);
                     break;
                 }
             }
@@ -229,29 +238,29 @@ public class DeCarona {
         }
 
     }
-     
+    
+     //Metodo de cadastro, de adição de pontos turistico e exibição
     private static void CadastrarPonto() throws IOException{
         int abertura, fechamento, id;
         String nome, local;
         
-        Random r = new Random();
+        int novaMat = DeCarona.listaPontos.size() + 1;
         
-        System.out.println("Digite o nome do Ponto turistico: ");
+        System.out.println("Informe o nome do Ponto turistico: ");
         nome = Console.readString();
         System.out.println("Digite o local (Bairro) do Ponto Turistico: ");
         local = Console.readString();
-        System.out.println("Digite a hora de Abertura: ");
+        System.out.println("Informe o horário de Abertura: ");
         abertura = Console.readInt();
-        System.out.println("Digite a hora de fechamento: ");
+        System.out.println("Insira o horário de fechamento: ");
         fechamento = Console.readInt();
         
-        id = r.nextInt(100);
-        quantPontos++;
+        id = novaMat;
         
         PontosTuristicos ponto = new PontosTuristicos(id, nome, local, abertura, fechamento);
-        for (int i = 0; i < listaPontos.size(); i++) {
-            if(listaPontos.get(i).VerSeJaTem(ponto) == 1){
-                System.out.println("Cadastro jÃ¡ Existe");
+        for (PontosTuristicos pt:listaPontos) {
+            if(pt.VerSeJaTem(ponto) == 1){
+                System.out.println("Cadastro já Existênte");
                 return;
             }
         }
@@ -264,12 +273,12 @@ public class DeCarona {
         
         System.out.println("Digite o nome do Bairro que deseja listar: ");
         bairro = Console.readString();
-        System.out.println("Digite o o horÃ¡rio atual: ");
+        System.out.println("Digite o o horário atual: ");
         hora = Console.readInt();
         
-        System.out.println("Pontos TurÃ­sticos localizado no bairro " + bairro + ":");
-        for(int i = 0; i < listaPontos.size(); i++){
-            listaPontos.get(i).ListarPonto(bairro, hora);
+        System.out.println("Pontos Turísticos localizado no bairro " + bairro + ":");
+        for(PontosTuristicos pt:listaPontos){
+            pt.ListarPonto(bairro, hora);
         }
     }
     
@@ -285,17 +294,17 @@ public class DeCarona {
           System.out.println("Digite a hora atual: ");
           hora = Console.readInt();
 
-          System.out.println("Pontos TurÃ­sticos localizado no bairro " + bairro + ":");
-          for(int i = 0; i < listaPontos.size(); i++){
-              if(bairro.equals(listaPontos.get(i).getLocal()))
-                  listaPontos.get(i).ListarPonto(bairro, hora, c);
+          System.out.println("Pontos Turísticos localizado no bairro " + bairro + ":");
+          for(PontosTuristicos pt:listaPontos){
+              if(bairro.equals(pt.getLocal()))
+                  pt.ListarPonto(bairro, hora, c);
             }  
         }else if( resp == 1){
             System.out.println("Digite a hora atual: ");
             hora = Console.readInt();
             
-            for(int i = 0; i < listaPontos.size(); i++){      
-                listaPontos.get(i).ListarPonto("", hora, c);
+            for(PontosTuristicos pt:listaPontos){      
+                pt.ListarPonto("", hora, c);
              }             
         }else if(resp == 3){
             System.out.println("Digite o nome do local Turistico");
@@ -303,13 +312,14 @@ public class DeCarona {
             System.out.println("Digite a hora atual: ");
             hora = Console.readInt();
             
-            for(int i = 0; i < listaPontos.size(); i++){   
-                if(nome.equals(listaPontos.get(i).getNome()))
-                    listaPontos.get(i).ListarPonto("", hora, c);
+            for(PontosTuristicos pt:listaPontos){   
+                if(nome.equals(pt.getNome()))
+                    pt.ListarPonto("", hora, c);
             }                
             
         }
 
     }
+    
  
 }
